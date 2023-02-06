@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
+import authRoutes from './route/auth.js';
 import cors from 'cors';
 const app = express();
 dotenv.config();
@@ -16,6 +17,8 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
 
+// Route Middleware
+app.use('/api', authRoutes);
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
